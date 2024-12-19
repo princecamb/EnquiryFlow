@@ -1,0 +1,219 @@
+<mvc:View xmlns:upload="sap.m.upload"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:suite="sap.suite.ui.commons"
+    xmlns="sap.uxap"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:m="sap.m"
+    xmlns:ui="sap.ui.table"
+    controllerName="Enquiryworkflow.workflowuimodule.controller.App"
+    displayBlock="true">
+
+    <m:App id="app13">
+        <ObjectPageLayout id="object13">
+
+            <!-- Object Page Header -->
+            <headerTitle>
+                <ObjectPageHeader id="headerForTest" objectTitle="{context>/invoiceno}">
+                </ObjectPageHeader>
+            </headerTitle>
+
+            <!-- Object Page Sections -->
+            <sections>
+
+                <!-- General Information Section -->
+                <ObjectPageSection id="generalInformationSection" title="General Information" titleUppercase="false">
+                    <subSections>
+                        <ObjectPageSubSection id="generalInformationSubSection" title="General Information" titleUppercase="false">
+                            <form:SimpleForm id="general-information-form" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
+                                <form:content>
+                                    <m:Label id="companyName-label" text="Company Name" />
+                                    <m:Text id="companyName-text" text="{context>/companyName}" />
+                                    
+                                    <m:Label id="contactNumber-label" text="Contact Number" />
+                                    <m:Text id="contactNumber-text" text="{context>/contactNumber}" />
+                                    
+                                    <m:Label id="email-label" text="Email" />
+                                    <m:Text id="email-text" text="{context>/email}" />
+                                    
+                                    <m:Label id="van-label" text="Virtual Account Number" />
+                                    <m:Text id="van-text" text="{context>/VAN}" />
+                                    
+                                    <m:Label id="address-label" text="Address" />
+                                    <m:Text id="address-text" text="{context>/address}" />
+
+                                    <m:Label id="jobTitle-label" text="Job Title" />
+                                    <m:Text id="jobTitle-text" text="{context>/jobTitle}" />
+
+<m:Label id="Department-label" text="Department" />
+<m:Text id="Department-text" text="{context>/Department}" />
+
+<m:Label id="TaxId-label" text="Tax ID" />
+<m:Text id="TaxId-text" text="{context>/TaxId}" />
+
+
+<m:Label id="Currency-label" text="Currency" />
+<m:Text id="Currency-text" text="{context>/Currency}" />
+
+<m:Label id="Language-label" text="Language" />
+<m:Text id="Language-text" text="{context>/Language}" />
+
+<m:Label id="Country-label" text="Country" />
+<m:Text id="Country-text" text="{context>/Country}" />
+
+<m:Label id="City-label" text="City" />
+<m:Text id="City-text" text="{context>/City}" />
+
+<m:Label id="Street-label" text="Street" />
+<m:Text id="Street-text" text="{context>/Street}" />
+
+<m:Label id="postalCode-label" text="Postal Code" />
+<m:Text id="postalCode-text" text="{context>/postalCode}" /> 
+
+<m:Label id="location-label" text="Location" />
+<m:Text id="location-text" text="{context>/location}" />    
+
+                                </form:content>
+                            </form:SimpleForm>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+
+                <!-- Enquiry Details Section -->
+                <ObjectPageSection id="enquiryDetailsSection" title="Enquiry Details" titleUppercase="false">
+                    <subSections>
+                        <ObjectPageSubSection id="enquiryDetailsSubSection" titleUppercase="false">
+                            <form:SimpleForm id="enquiry-information-form" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
+                                <form:content>
+                                
+
+                                    <m:Label id="contactPerson-label" text="Contact Person" />
+                                    <m:Text id="contactPerson-text" text="{context>/contactPerson}" />
+
+                                    <m:Label id="Division-label" text="Division" />
+                                    <m:Text id="division-text" text="{= ${context>/division} + ' (' + (${DivisionModel>/Divis}) + ')' }" />
+
+                                    <m:Label id="Sales-label" text="Sales Organization" />
+                                    <m:Text id="salesOrg-text" text="{= ${context>/SalesOrg} + ' (' + (${SalesModel>/SalesOrgDescription}) + ')' }" />
+
+
+                                    <m:Label id="purchaseEnquiryID-label" text="Purchase Enquiry ID" />
+                                    <m:Text id="purchaseEnquiryID-text" text="{context>/purchaseEnquiryID}" />
+
+                                     <m:Label id="Distribution-label" text="Distribution Channel" />
+                                     <m:Text id="Distribution-text" text="{= ${context>/DistributionChannel} + ' (' + (${DistributionModel>/Distribution}) + ')' }" />
+
+                                    <m:Label id="doctype-label" text="Document Type" />
+                                    <m:Text id="Document-text"  text="{= ${context>/DocumentType} + ' (' + (${DocumentModel>/Documentty}) + ')' }" />
+                                </form:content>
+                            </form:SimpleForm>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+
+               <!-- Vehicle Details Section -->
+                <ObjectPageSection id="vehicleDetailsSection" title="Vehicle Details" titleUppercase="false">
+                    <subSections>
+                        <ObjectPageSubSection id="vehicleDetailsSubSection" titleUppercase="false" class="customVehicleSubSection">
+                            <!-- Horizontal Scroll Container for Vehicle Details -->
+                          <m:ScrollContainer id="_IDGenScrollContainer1" height="100%" width="100%" horizontal="true" vertical="true" class="thin-scrollbar">
+                                <ui:Table id="vehicle-details-table" rows="{myVehicle>/Vehicles}" width="100%" selectionMode="None" visibleRowCount="{= Math.max(1, ${myVehicle>/Vehicles}.length)}">
+                                    <ui:columns>
+                                        <ui:Column id="_IDGenColumn" width="200px">
+                                            <m:Label id="_IDGenLabel" text="Vehicle Code" />
+                                            <ui:template>
+                                                <m:Text id="_IDGenText1" text="{myVehicle>materialCode}" textAlign="Center" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn1" width="200px">
+                                            <m:Label id="_IDGenLabel1" text="Vehicle Name" />
+                                            <ui:template>
+                                                <m:Text id="_IDGenText2" text="{myVehicle>vehicleName}" textAlign="Center" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn3" width="200px">
+                                            <m:Label id="_IDGenLabel3" text="Vehicle Color" />
+                                            <ui:template>
+                                                <m:Text id="_IDGenText4" text="{myVehicle>vehicleColor}" textAlign="Center" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn2" width="150px">
+                                            <m:Label id="_IDGenLabel2" text="Quantity" />
+                                            <ui:template>
+                                                <m:Text id="_IDGenText3" text="{myVehicle>quantity}" textAlign="Center" />
+                                            </ui:template>
+                                        </ui:Column>  
+                                         <ui:Column id="_IDGenColumn6" width="200px">
+                                            <m:Label id="_IDGenLabel13" text="Partner Role" />
+                                            <ui:template>
+                                                <m:Text id="_IDGenText14" text="{myVehicle>partnerRole}" textAlign="Center" />
+                                            </ui:template>
+                                        </ui:Column>
+                                         <ui:Column id="_IDGenColumn8" width="200px">
+                                            <m:Label id="_IDGenLabel23" text="Partner No" />
+                                            <ui:template>
+                                                <m:Text id="_IDGenText24" text="{myVehicle>partnerNumber}" textAlign="Center" />
+                                            </ui:template>
+                                        </ui:Column>  
+                                         <ui:Column id="_IDGenColumn9" width="200px">
+                                            <m:Label id="_IDGenLabel231" text="Preferred Delivery Date" />
+                                            <ui:template>
+                                                <m:Text id="_IDGenText241" text="{myVehicle>preferredDelDate}" textAlign="Center" />
+                                            </ui:template>
+                                        </ui:Column>  
+                                         <ui:Column id="_IDGenColumn10" width="200px">
+                                            <m:Label id="_IDGenLabel232" text="Preferred Delivery Location" />
+                                            <ui:template>
+                                                <m:Text id="_IDGenText245" text="{myVehicle>preferredDelLocation}" textAlign="Center" />
+                                            </ui:template>
+                                        </ui:Column>                          
+                                    </ui:columns>
+                                </ui:Table>
+                            </m:ScrollContainer>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+
+
+                <!-- Attachment Section -->
+                <ObjectPageSection id="attachmentsSection1" title="Attachments" titleUppercase="false">
+                    <subSections>
+                        <ObjectPageSubSection id="attachmentsSubSection1" title="Attachments" titleUppercase="false">
+                            <upload:UploadSet id="uploadSet1" uploadEnabled="false" items="{myModel>/Files}">
+                                <upload:items>
+                                    <upload:UploadSetItem id="uploadSetItem1" fileName="{myModel>fileName}" mediaType="{myModel>mediaType}" url="{myModel>url}" enabledEdit="false" enabledRemove="false" visibleEdit="false" visibleRemove="false" openPressed="onOpenPressed">
+                                        <upload:attributes>
+                                            <m:ObjectAttribute id="uploadedBy-attribute1" title="Uploaded By" text="{myModel>createdBy}" />
+                                            <m:ObjectAttribute id="uploadedOn-attribute1" title="Uploaded on" text="{myModel>createdAt}" />
+                                            <m:ObjectAttribute id="fileSize-attribute1" title="File Size" text="{myModel>fileSize}" />
+                                        </upload:attributes>
+                                    </upload:UploadSetItem>
+                                </upload:items>
+                            </upload:UploadSet>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+
+                <!-- comment section -->
+
+                <ObjectPageSection id="commentSection"  titleUppercase="false">
+    <subSections>
+        <ObjectPageSubSection id="_IDGenObjectPageSubSection5" title="Comments" titleUppercase="false">
+            <m:VBox id="_IDGenVBox2" width="100%">
+                <m:Toolbar id="_IDGenToolbar">
+                    <m:Title id="_IDGenTitle1" title="Comments"/>
+                    <m:ToolbarSpacer id="_IDGenToolbarSpacer1"/>
+                </m:Toolbar>
+                <m:TextArea id="_IDGenTextArea" showExceededText="true" maxLength="1000" width="100%" height="200px" value="{commentModel>/Comment}" editable="false"  class="largeText"/>   
+            </m:VBox>
+        </ObjectPageSubSection>
+    </subSections>
+</ObjectPageSection>
+
+            </sections>
+        </ObjectPageLayout>
+    </m:App>
+
+</mvc:View>

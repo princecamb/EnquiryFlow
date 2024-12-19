@@ -1,0 +1,318 @@
+{
+    "_version": "1.26.0",
+    "sap.app": {
+        "id": "Enquiryworkflow.workflowuimodule",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.8.4",
+            "toolsId": "42a7d045-ab4b-46d4-8716-bdbe4fee56f1"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.82.2",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "Enquiryworkflow.workflowuimodule.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "Enquiryworkflow.workflowuimodule.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteMyTaskUI",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetMyTaskUI"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetMyTaskUI": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "MyTaskUI",
+                    "viewName": "MyTaskUI"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "Enquiryworkflow.workflowuimodule.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "Enquiry__Workflow"
+    },
+    "sap.bpa.task": {
+        "_version": "1.0.0",
+        "outcomes": [
+          {
+            "id": "approve",
+            "label": "Approve"
+          },
+          {
+            "id": "reject",
+            "label": "Reject"
+          }
+        ],
+          "inputs": {
+            "$schema": "http://json-schema.org/draft-07/schema",
+            "title": "input",
+            "type": "object",
+            "required": [
+              "purchaseEnquiryID",
+              "contactPerson",
+              "customerID",
+              "division",
+              "companyName",
+              "address",
+              "contactNumber",
+              "email",
+              "VAN",
+              "SalesOrg",
+              "DocumentType",
+              "DistributionChannel",
+              "commentlink",
+              "filelink",
+              "jobTitle",
+              "Department",
+              "TaxId",
+              "Currency",
+              "Language",
+              "Country",
+              "City",
+              "Street",
+              "postalCode",
+              "location",
+              "link"
+            ],
+            "properties": {
+              "purchaseEnquiryID": {
+                "type": "string",
+                "title": "Purchase Enquiry ID",
+                "description": "ID of the Purchase Enquiry"
+              },
+              "contactPerson": {
+                "type": "string",
+                "title": "Contact Person",
+                "description": "Code of the person"
+              },
+              "VAN": {
+                "type": "string",
+                "title": "VAN",
+                "description": "ID VAN"
+              },
+              "customerID": {
+                "type": "string",
+                "title": "Customer ID",
+                "description": "ID of the Customer"
+              },
+             
+              "division": {
+                "type": "string",
+                "title": "Division",
+                "description": "Division responsible for the transaction"
+              },
+             
+              "DistributionChannel": {
+                "type": "string",
+                "title": "Distribution Channel",
+                "description": "Code of the Vehicle"
+              },
+              "companyName": {
+                "type": "string",
+                "title": "Company Name",
+                "description": "Name of the company"
+              },
+              "DocumentType": {
+                "type": "string",
+                "title": "DocumentType",
+                "description": "Type of document"
+              },
+              "address": {
+                "type": "string",
+                "title": "Address",
+                "description": "Address of the customer"
+              },
+              "contactNumber": {
+                "type": "string",
+                "title": "Contact Number",
+                "description": "Contact number of the customer"
+              },
+              "SalesOrg": {
+                "type": "string",
+                "title": "Sales organization",
+                "description": "Sales organization"
+              },
+              "email": {
+                "type": "string",
+                "title": "Email",
+                "description": "Email address of the customer"
+              },
+              "commentlink": {
+                "type": "string",
+                "title": "comment link",
+                "description": "ID of the Purchase Enquiry"
+              },
+              "filelink": {
+                "type": "string",
+                "title": "file link",
+                "description": "ID of the Purchase Enquiry"
+              },
+
+              "jobTitle": {
+                "type": "string",
+                "title": "Job Title",
+                "description": "Title of the job"
+              },
+              "Department": {
+                "type": "string",
+                "title": "Department",
+                "description": "Department of the person"
+              },
+              "TaxId": {
+                "type": "string",
+                "title": "Tax ID",
+                "description": "Tax identification number"
+              },
+              "Currency": {
+                "type": "string",
+                "title": "Currency",
+                "description": "Currency used in the transaction"
+              },
+              "Language": {
+                "type": "string",
+                "title": "Language",
+                "description": "Language preference"
+              },
+              "Country": {
+                "type": "string",
+                "title": "Country",
+                "description": "Country of the customer"
+              },
+              "City": {
+                "type": "string",
+                "title": "City",
+                "description": "City of the customer"
+              },
+              "Street": {
+                "type": "string",
+                "title": "Street",
+                "description": "Street of the customer"
+              },
+              "postalCode": {
+                "type": "string",
+                "title": "Postal Code",
+                "description": "Postal code of the customer's location"
+              },
+
+              "location": {
+                "type": "string",
+                "title": "Location",
+                "description": "Location details"
+              },
+
+              "link": {
+                "type": "string",
+                "title": "link",
+                "description": "Location details"
+              }
+
+            }
+          },  
+        "outputs": {
+          "$schema": "http://json-schema.org/draft-07/schema",
+          "title": "output",
+          "type": "object",
+          "required": ["comment"],
+          "properties": {
+            "comment": {
+              "type": "string",
+              "title": "Comment",
+              "description": "Comment to buyer"
+            }
+          }
+        },
+        "category": "approval"
+      }
+    }
+    

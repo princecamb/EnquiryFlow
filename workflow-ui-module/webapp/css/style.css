@@ -1,0 +1,49 @@
+
+.thin-scrollbar {
+    overflow-y: scroll;
+    scrollbar-width: thin; 
+}
+
+
+.thin-scrollbar::-webkit-scrollbar {
+    width: 8px; 
+}
+
+
+.thin-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 4px; 
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+
+#container .thin-scrollbar {
+    height: 100%; 
+}
+
+
+.largeText .sapMInputBaseInner {
+    font-size: 16px; 
+}
+
+.sapMListTblRow .sapMCb {
+    display: none;
+}
+
+.customVehicleSubSection {
+    max-height: 400px; /* Ensures a maximum height with scrolling */
+    overflow-y: auto; /* Enables scrolling if content exceeds height */
+    height: auto;
+   
+}
+
+
+

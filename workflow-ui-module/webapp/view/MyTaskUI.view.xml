@@ -1,0 +1,11 @@
+<mvc:View controllerName="Enquiry_workflow.workflowuimodule.controller.MyTaskUI" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+    <App id="app">
+        <pages>
+            <Page showHeader="false" showFooter="false">
+                <content>
+                    <Input value="{context>/text}" id="__input0"/>
+                </content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>
