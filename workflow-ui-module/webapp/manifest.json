@@ -152,7 +152,6 @@
               "DocumentType",
               "DistributionChannel",
               "commentlink",
-              "filelink",
               "jobTitle",
               "Department",
               "TaxId",
@@ -166,11 +165,13 @@
               "link"
             ],
             "properties": {
+              
               "purchaseEnquiryID": {
                 "type": "string",
                 "title": "Purchase Enquiry ID",
                 "description": "ID of the Purchase Enquiry"
               },
+             
               "contactPerson": {
                 "type": "string",
                 "title": "Contact Person",
@@ -234,7 +235,7 @@
                 "description": "ID of the Purchase Enquiry"
               },
               "filelink": {
-                "type": "string",
+                "type": "array",
                 "title": "file link",
                 "description": "ID of the Purchase Enquiry"
               },

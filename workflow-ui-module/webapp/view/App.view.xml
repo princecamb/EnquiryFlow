@@ -29,7 +29,7 @@
                         <ObjectPageSubSection id="generalInformationSubSection" title="General Information" titleUppercase="false">
                             <form:SimpleForm id="general-information-form" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
                                 <form:content>
-                                    <m:Label id="companyName-label" text="Company Name" />
+                                    <m:Label id="companyName-label" text="CompanyName" />
                                     <m:Text id="companyName-text" text="{context>/companyName}" />
                                     
                                     <m:Label id="contactNumber-label" text="Contact Number" />
@@ -93,20 +93,20 @@
                                     <m:Text id="contactPerson-text" text="{context>/contactPerson}" />
 
                                     <m:Label id="Division-label" text="Division" />
-                                    <m:Text id="division-text" text="{= ${context>/division} + ' (' + (${DivisionModel>/Divis}) + ')' }" />
+                                    <m:Text id="division-text" text="{context>/division}" />
 
                                     <m:Label id="Sales-label" text="Sales Organization" />
-                                    <m:Text id="salesOrg-text" text="{= ${context>/SalesOrg} + ' (' + (${SalesModel>/SalesOrgDescription}) + ')' }" />
+                                    <m:Text id="salesOrg-text" text="{context>/SalesOrg}" />
 
 
                                     <m:Label id="purchaseEnquiryID-label" text="Purchase Enquiry ID" />
                                     <m:Text id="purchaseEnquiryID-text" text="{context>/purchaseEnquiryID}" />
 
                                      <m:Label id="Distribution-label" text="Distribution Channel" />
-                                     <m:Text id="Distribution-text" text="{= ${context>/DistributionChannel} + ' (' + (${DistributionModel>/Distribution}) + ')' }" />
+                                     <m:Text id="Distribution-text" text="{context>/DistributionChannel}" />
 
                                     <m:Label id="doctype-label" text="Document Type" />
-                                    <m:Text id="Document-text"  text="{= ${context>/DocumentType} + ' (' + (${DocumentModel>/Documentty}) + ')' }" />
+                                    <m:Text id="Document-text"  text="{context>/DocumentType}" />
                                 </form:content>
                             </form:SimpleForm>
                         </ObjectPageSubSection>
@@ -187,7 +187,7 @@
                                         <upload:attributes>
                                             <m:ObjectAttribute id="uploadedBy-attribute1" title="Uploaded By" text="{myModel>createdBy}" />
                                             <m:ObjectAttribute id="uploadedOn-attribute1" title="Uploaded on" text="{myModel>createdAt}" />
-                                            <m:ObjectAttribute id="fileSize-attribute1" title="File Size" text="{myModel>fileSize}" />
+                                            <m:ObjectAttribute id="fileSize-attribute1" title="File Size" text="{myModel>size}" />
                                         </upload:attributes>
                                     </upload:UploadSetItem>
                                 </upload:items>
@@ -206,7 +206,7 @@
                     <m:Title id="_IDGenTitle1" title="Comments"/>
                     <m:ToolbarSpacer id="_IDGenToolbarSpacer1"/>
                 </m:Toolbar>
-                <m:TextArea id="_IDGenTextArea" showExceededText="true" maxLength="1000" width="100%" height="200px" value="{commentModel>/Comment}" editable="false"  class="largeText"/>   
+                <m:TextArea id="_IDGenTextArea" showExceededText="true" maxLength="1000" width="100%" height="200px" value="{commentModel>/Comment}" editable="false"   class="styledText"/>   
             </m:VBox>
         </ObjectPageSubSection>
     </subSections>

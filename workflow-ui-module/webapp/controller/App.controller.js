@@ -28,6 +28,10 @@ sap.ui.define(["sap/m/MessageToast",
         debugger
         var oUploadSet = this.byId("uploadSet1");
         oUploadSet.setMode("None");
+        var oUploadButton = sap.ui.getCore().byId("__component1---App--uploadSet1-uploader-fu_button");
+        if (oUploadButton) {
+          oUploadButton.setVisible(false); // Hide the button
+        }
         
       },
 
@@ -285,78 +289,156 @@ sap.ui.define(["sap/m/MessageToast",
       });
     }.bind(this), 1000);
   
-    setTimeout(function () {
+    // setTimeout(function () {
+    //   var oView = this.getView();
+    //   var oModel1 = new sap.ui.model.json.JSONModel();
+    //   debugger;
+    //   var oData1 = oView.oPropagatedProperties.oModels.context.oData;
+    //   var baseUrl1 = oData1.link;
+  
+    //   $.ajax({
+    //     url: baseUrl1,
+    //     method: "GET",
+    //     success: function (oData1) {
+    //       console.log(oData1);
+    //       oModel1.setData({ Vehicles: oData1.value });
+    //       oView.setModel(oModel1, "myVehicle");
+    //       console.log(oView);
+    //     },
+    //     error: function (jqXHR, textStatus, errorThrown) {
+    //       console.error("Error fetching data: " + textStatus + " " + errorThrown);
+    //     },
+    //   });
+    // }.bind(this), 1000);
+
+    setTimeout(async function () {
+      debugger
       var oView = this.getView();
-      var oModel1 = new sap.ui.model.json.JSONModel();
+      
       debugger;
       var oData1 = oView.oPropagatedProperties.oModels.context.oData;
-      var baseUrl1 = oData1.link;
-  
-      $.ajax({
-        url: baseUrl1,
-        method: "GET",
-        success: function (oData1) {
-          console.log(oData1);
-          oModel1.setData({ Vehicles: oData1.value });
-          oView.setModel(oModel1, "myVehicle");
-          console.log(oView);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.error("Error fetching data: " + textStatus + " " + errorThrown);
-        },
-      });
-    }.bind(this), 1000);
+
+      if (!oData1) {
+        console.warn("No data available in context.");
+        return;
+      }
+
+      try {
+        // Extract link data
+        var baseUrl = JSON.parse(oData1.link);
+
+        // Prepare model for the base link data
+        var oModel1 = new sap.ui.model.json.JSONModel();
+        oModel1.setData({ Vehicles: baseUrl });
+        oView.setModel(oModel1, "myVehicle");
+
+        // If data is in array format, log the delivery lead time
+      }
+      catch (error) {
+        console.error("Error during AJAX requests:", error);
+      }
+    }.bind(this), 300);
   
     setTimeout(function () {
       var oView = this.getView();
       var oModel2 = new sap.ui.model.json.JSONModel();
       debugger;
+  
       var oData2 = oView.oPropagatedProperties.oModels.context.oData;
-      const fileurl1 = oData2.filelink;
   
-      $.ajax({
-        url: fileurl1,
-        method: "GET",
-        success: function (oData2) {
-          console.log("Files", oData2);
-          oModel2.setData({ Files: oData2.value });
+      // Check if filelink exists and is an array
+      if (oData2.filelink && Array.isArray(oData2.filelink)) {
+          const fileData = oData2.filelink;
+  
+          console.log(fileData); // Check if fileData contains the expected array
+  
+          // Set the full array to the model
+          oModel2.setData({ Files: fileData });
+  
+          // Set the model to the view
           oView.setModel(oModel2, "myModel");
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.error("Error fetching data: " + textStatus + " " + errorThrown);
-        },
-      });
-    }.bind(this), 1000);
   
+          console.log("Model set successfully:", oModel2.getData());
+      } else {
+          console.error("filelink is missing or not an array");
+      }
+  }.bind(this), 1000);
+  
+  
+    // setTimeout(function () {
+    //   var oView = this.getView();
+    //   var oModel3 = new sap.ui.model.json.JSONModel();
+    //   debugger;
+    //   var oData3 = oView.oPropagatedProperties.oModels.context.oData;
+    //   const baseUrlComments = oData3.commentlink;
+  
+    //   $.ajax({
+    //     url: baseUrlComments,
+    //     method: "GET",
+    //     success: function (oData3) {
+    //       const regex = /^\d{10}/;
+    //       const filteredComments = oData3.value
+    //         .filter(comment => !regex.test(comment.commentsText))
+    //         .map(function (oComment) {
+    //           return `Comment: ${oComment.commentsText}\nCreated At: ${oComment.createdAt}\nCreated By: ${oComment.createdBy}`;
+    //         })
+    //         .join("\n\n");
+  
+    //       console.log(filteredComments);
+  
+    //       const oCommentModel = new sap.ui.model.json.JSONModel({ Comment: filteredComments });
+    //       oView.setModel(oCommentModel, "commentModel");
+    //     },
+    //     error: function (jqXHR, textStatus, errorThrown) {
+    //       console.error("Error fetching Comments data:", textStatus, errorThrown);
+    //     },
+    //   });
+    // }.bind(this), 1000);
+
+
     setTimeout(function () {
+      debugger;
       var oView = this.getView();
-      var oModel3 = new sap.ui.model.json.JSONModel();
+    
       debugger;
       var oData3 = oView.oPropagatedProperties.oModels.context.oData;
-      const baseUrlComments = oData3.commentlink;
-  
-      $.ajax({
-        url: baseUrlComments,
-        method: "GET",
-        success: function (oData3) {
-          const regex = /^\d{10}/;
-          const filteredComments = oData3.value
-            .filter(comment => !regex.test(comment.commentsText))
-            .map(function (oComment) {
-              return `Comment: ${oComment.commentsText}\nCreated At: ${oComment.createdAt}\nCreated By: ${oComment.createdBy}`;
-            })
-            .join("\n\n");
-  
-          console.log(filteredComments);
-  
-          const oCommentModel = new sap.ui.model.json.JSONModel({ Comment: filteredComments });
-          oView.setModel(oCommentModel, "commentModel");
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.error("Error fetching Comments data:", textStatus, errorThrown);
-        },
-      });
-    }.bind(this), 1000);
+    
+      if (!oData3) {
+        console.warn("No data available in context.");
+        return;
+      }
+    
+      try {
+        // Parse the comment link data directly from oData37
+        var commentsData = JSON.parse(oData3.commentlink);
+    
+        // Filter and format the comments data
+        const regex = /^\d{10}/; // Regex to filter out unwanted comments
+        const filteredComments = commentsData
+          .filter(comment => !regex.test(comment.commentsText))
+          .map(function (oComment) {
+            return `Comment: ${oComment.commentsText}\nCreated At: ${oComment.createdAt}\nCreated By: ${oComment.createdBy}`;
+          });
+    
+        // Combine all comments into a single string
+        const commentsText = filteredComments.join("\n\n");
+    
+        // Prepare the model with the combined comments text
+        var oModel3 = new sap.ui.model.json.JSONModel({ Comment: commentsText });
+        oView.setModel(oModel3, "commentModel");
+    
+        console.log("Comments data successfully set in the model:", commentsText);
+      } catch (error) {
+        console.error("Error processing comment data:", error);
+      }
+    }.bind(this), 300);
+    
+    
+
+
+
+
+
   },
       
   onOpenPressed: function (oEvent) {
