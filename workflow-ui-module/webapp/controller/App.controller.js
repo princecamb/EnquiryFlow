@@ -28,10 +28,13 @@ sap.ui.define(["sap/m/MessageToast",
         debugger
         var oUploadSet = this.byId("uploadSet1");
         oUploadSet.setMode("None");
-        var oUploadButton = sap.ui.getCore().byId("__component1---App--uploadSet1-uploader-fu_button");
-        if (oUploadButton) {
-          oUploadButton.setVisible(false); // Hide the button
-        }
+        var oButton = document.querySelector(".sapUiFupGroup button");
+
+// Check if the button exists and hide it
+if (oButton) {
+    oButton.style.display = "none";
+}
+        
         
       },
 
@@ -180,114 +183,116 @@ sap.ui.define(["sap/m/MessageToast",
 
   onBeforeRendering: async function () {
     debugger;
+    var uploadSet = this.getView().mAggregations.content[0].mAggregations.pages[0].mAggregations.sections[4].mAggregations._grid.mAggregations.content[0].mAggregations.blocks[0];
+        uploadSet.setUploadButtonInvisible(true);
   
-    setTimeout(function () {
-      var oView = this.getView();
-      var oModel = new sap.ui.model.json.JSONModel();
-      debugger;
-      var oData = oView.oPropagatedProperties.oModels.context.oData;
-      var salesOrg = oData.SalesOrg;
+    // setTimeout(function () {
+    //   var oView = this.getView();
+    //   var oModel = new sap.ui.model.json.JSONModel();
+    //   debugger;
+    //   var oData = oView.oPropagatedProperties.oModels.context.oData;
+    //   var salesOrg = oData.SalesOrg;
   
-      var baseUrl1 = "https://44f10b5ftrial-dev1-mahindra-sales-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/my/SH";
-      var filterUrl = baseUrl1 + `?$filter=sHId eq '${salesOrg}'`;
+    //   var baseUrl1 = "https://44f10b5ftrial-dev1-mahindra-sales-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/my/SH";
+    //   var filterUrl = baseUrl1 + `?$filter=sHId eq '${salesOrg}'`;
   
-      $.ajax({
-        url: filterUrl,
-        method: "GET",
-        success: function (oData12) {
-          var descri = oData12.value[0].sHDescription;
-          oModel.setData({SalesOrgDescription:descri});
-          oView.setModel(oModel, "SalesModel");
-          debugger
-          console.log("SH Description:", descri);
-          console.log(oView);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.error("Error fetching data: " + textStatus + " " + errorThrown);
-        },
-      });
-    }.bind(this), 1000);
+    //   $.ajax({
+    //     url: filterUrl,
+    //     method: "GET",
+    //     success: function (oData12) {
+    //       var descri = oData12.value[0].sHDescription;
+    //       oModel.setData({SalesOrgDescription:descri});
+    //       oView.setModel(oModel, "SalesModel");
+    //       debugger
+    //       console.log("SH Description:", descri);
+    //       console.log(oView);
+    //     },
+    //     error: function (jqXHR, textStatus, errorThrown) {
+    //       console.error("Error fetching data: " + textStatus + " " + errorThrown);
+    //     },
+    //   });
+    // }.bind(this), 1000);
 
-    setTimeout(function () {
-      var oView = this.getView();
-      var oModel = new sap.ui.model.json.JSONModel();
-      debugger;
-      var oData = oView.oPropagatedProperties.oModels.context.oData;
-      var districhannel = oData.DistributionChannel;
+    // setTimeout(function () {
+    //   var oView = this.getView();
+    //   var oModel = new sap.ui.model.json.JSONModel();
+    //   debugger;
+    //   var oData = oView.oPropagatedProperties.oModels.context.oData;
+    //   var districhannel = oData.DistributionChannel;
   
-      var baseUrl2 = "https://44f10b5ftrial-dev1-mahindra-sales-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/my/SH";
-      var filterUrl1 = baseUrl2 + `?$filter=sHId2 eq '${districhannel}' and sHField2 eq 'Distribution Channel'`;
+    //   var baseUrl2 = "https://44f10b5ftrial-dev1-mahindra-sales-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/my/SH";
+    //   var filterUrl1 = baseUrl2 + `?$filter=sHId2 eq '${districhannel}' and sHField2 eq 'Distribution Channel'`;
   
-      $.ajax({
-        url: filterUrl1,
-        method: "GET",
-        success: function (oData13) {
-          var nutty = oData13.value[0].sHDescription2;
-          oModel.setData({Distribution:nutty});
-          oView.setModel(oModel, "DistributionModel");
-          debugger
-          console.log("SH Description:", nutty);
-          console.log(oView);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.error("Error fetching data: " + textStatus + " " + errorThrown);
-        },
-      });
-    }.bind(this), 1000);
+    //   $.ajax({
+    //     url: filterUrl1,
+    //     method: "GET",
+    //     success: function (oData13) {
+    //       var nutty = oData13.value[0].sHDescription2;
+    //       oModel.setData({Distribution:nutty});
+    //       oView.setModel(oModel, "DistributionModel");
+    //       debugger
+    //       console.log("SH Description:", nutty);
+    //       console.log(oView);
+    //     },
+    //     error: function (jqXHR, textStatus, errorThrown) {
+    //       console.error("Error fetching data: " + textStatus + " " + errorThrown);
+    //     },
+    //   });
+    // }.bind(this), 1000);
 
-    setTimeout(function () {
-      var oView = this.getView();
-      var oModel = new sap.ui.model.json.JSONModel();
-      debugger;
-      var oData = oView.oPropagatedProperties.oModels.context.oData;
-      var divi = oData.division;
+    // setTimeout(function () {
+    //   var oView = this.getView();
+    //   var oModel = new sap.ui.model.json.JSONModel();
+    //   debugger;
+    //   var oData = oView.oPropagatedProperties.oModels.context.oData;
+    //   var divi = oData.division;
   
-      var baseUrl3 = "https://44f10b5ftrial-dev1-mahindra-sales-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/my/SH";
-      var filterUrl2 = baseUrl3 + `?$filter=sHId2 eq '${divi}' and sHField2 eq 'Division'`;
+    //   var baseUrl3 = "https://44f10b5ftrial-dev1-mahindra-sales-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/my/SH";
+    //   var filterUrl2 = baseUrl3 + `?$filter=sHId2 eq '${divi}' and sHField2 eq 'Division'`;
   
-      $.ajax({
-        url: filterUrl2,
-        method: "GET",
-        success: function (oData14) {
-          var diving = oData14.value[0].sHDescription2;
-          oModel.setData({Divis:diving});
-          oView.setModel(oModel, "DivisionModel");
-          debugger
-          console.log("SH Description:", diving);
-          console.log(oView);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.error("Error fetching data: " + textStatus + " " + errorThrown);
-        },
-      });
-    }.bind(this), 1000);
+    //   $.ajax({
+    //     url: filterUrl2,
+    //     method: "GET",
+    //     success: function (oData14) {
+    //       var diving = oData14.value[0].sHDescription2;
+    //       oModel.setData({Divis:diving});
+    //       oView.setModel(oModel, "DivisionModel");
+    //       debugger
+    //       console.log("SH Description:", diving);
+    //       console.log(oView);
+    //     },
+    //     error: function (jqXHR, textStatus, errorThrown) {
+    //       console.error("Error fetching data: " + textStatus + " " + errorThrown);
+    //     },
+    //   });
+    // }.bind(this), 1000);
 
-    setTimeout(function () {
-      var oView = this.getView();
-      var oModel = new sap.ui.model.json.JSONModel();
-      debugger;
-      var oData = oView.oPropagatedProperties.oModels.context.oData;
-      var docu = oData.DocumentType;
+    // setTimeout(function () {
+    //   var oView = this.getView();
+    //   var oModel = new sap.ui.model.json.JSONModel();
+    //   debugger;
+    //   var oData = oView.oPropagatedProperties.oModels.context.oData;
+    //   var docu = oData.DocumentType;
   
-      var baseUrl4 = "https://44f10b5ftrial-dev1-mahindra-sales-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/my/SH";
-      var filterUrl3 = baseUrl4 + `?$filter=sHId eq '${docu}'`;
+    //   var baseUrl4 = "https://44f10b5ftrial-dev1-mahindra-sales-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/my/SH";
+    //   var filterUrl3 = baseUrl4 + `?$filter=sHId eq '${docu}'`;
   
-      $.ajax({
-        url: filterUrl3,
-        method: "GET",
-        success: function (oData15) {
-          var doctype = oData15.value[0].sHDescription;
-          oModel.setData({Documentty:doctype});
-          oView.setModel(oModel, "DocumentModel");
-          debugger
-          console.log("SH Description:", doctype);
-          console.log(oView);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.error("Error fetching data: " + textStatus + " " + errorThrown);
-        },
-      });
-    }.bind(this), 1000);
+    //   $.ajax({
+    //     url: filterUrl3,
+    //     method: "GET",
+    //     success: function (oData15) {
+    //       var doctype = oData15.value[0].sHDescription;
+    //       oModel.setData({Documentty:doctype});
+    //       oView.setModel(oModel, "DocumentModel");
+    //       debugger
+    //       console.log("SH Description:", doctype);
+    //       console.log(oView);
+    //     },
+    //     error: function (jqXHR, textStatus, errorThrown) {
+    //       console.error("Error fetching data: " + textStatus + " " + errorThrown);
+    //     },
+    //   });
+    // }.bind(this), 1000);
   
     // setTimeout(function () {
     //   var oView = this.getView();
@@ -395,51 +400,104 @@ sap.ui.define(["sap/m/MessageToast",
     //   });
     // }.bind(this), 1000);
 
-
     setTimeout(function () {
-      debugger;
       var oView = this.getView();
-    
+      var oModel9 = new sap.ui.model.json.JSONModel();
       debugger;
-      var oData3 = oView.oPropagatedProperties.oModels.context.oData;
-    
-      if (!oData3) {
-        console.warn("No data available in context.");
-        return;
+  
+      var oData9 = oView.oPropagatedProperties.oModels.context.oData;
+  
+      // Check if filelink exists and is an array
+      if (oData9.patner && Array.isArray(oData9.patner)) {
+          const partnerData = oData9.patner;
+  
+          console.log(partnerData); 
+          // Set the full array to the model
+          oModel9.setData({ patner:  partnerData });
+  
+          // Set the model to the view
+          oView.setModel(oModel9, "mydetail");
+  
+          console.log("Model set successfully:", oModel9.getData());
+      } else {
+          console.error("partner is missing or not an array");
       }
+  }.bind(this), 1000);
+
+//comments text
+    // setTimeout(function () {
+    //   debugger;
+    //   var oView = this.getView();
     
-      try {
-        // Parse the comment link data directly from oData37
-        var commentsData = JSON.parse(oData3.commentlink);
+    //   debugger;
+    //   var oData3 = oView.oPropagatedProperties.oModels.context.oData;
     
-        // Filter and format the comments data
-        const regex = /^\d{10}/; // Regex to filter out unwanted comments
-        const filteredComments = commentsData
-          .filter(comment => !regex.test(comment.commentsText))
-          .map(function (oComment) {
-            return `Comment: ${oComment.commentsText}\nCreated At: ${oComment.createdAt}\nCreated By: ${oComment.createdBy}`;
-          });
+    //   if (!oData3) {
+    //     console.warn("No data available in context.");
+    //     return;
+    //   }
     
-        // Combine all comments into a single string
-        const commentsText = filteredComments.join("\n\n");
+    //   try {
+    //     // Parse the comment link data directly from oData37
+    //     var commentsData = JSON.parse(oData3.commentlink);
     
-        // Prepare the model with the combined comments text
-        var oModel3 = new sap.ui.model.json.JSONModel({ Comment: commentsText });
-        oView.setModel(oModel3, "commentModel");
+    //     // Filter and format the comments data
+    //     const regex = /^\d{10}/; // Regex to filter out unwanted comments
+    //     const filteredComments = commentsData
+    //       .filter(comment => !regex.test(comment.commentsText))
+    //       .map(function (oComment) {
+    //         return `Comment: ${oComment.commentsText}\nCreated At: ${oComment.createdAt}\nCreated By: ${oComment.createdBy}`;
+    //       });
     
-        console.log("Comments data successfully set in the model:", commentsText);
-      } catch (error) {
-        console.error("Error processing comment data:", error);
-      }
-    }.bind(this), 300);
+    //     // Combine all comments into a single string
+    //     const commentsText = filteredComments.join("\n\n");
     
+    //     // Prepare the model with the combined comments text
+    //     var oModel3 = new sap.ui.model.json.JSONModel({ Comment: commentsText });
+    //     oView.setModel(oModel3, "commentModel");
     
+    //     console.log("Comments data successfully set in the model:", commentsText);
+    //   } catch (error) {
+    //     console.error("Error processing comment data:", error);
+    //   }
+    // }.bind(this), 300);
+
+  // },
+
+  setTimeout(function () {
+    var oView = this.getView();
+    var oModel11 = new sap.ui.model.json.JSONModel();
+    debugger;
+    var oData11 = oView.oPropagatedProperties.oModels.context.oData;
+   
 
 
+        try {
+          // Second AJAX call for comment history data
+          debugger
+          var commentsData = JSON.parse(oData11.commentlink);
+          debugger
+          if (commentsData) {
+            
+            const filteredComments = commentsData.filter(comment => !/^\d{10}/.test(comment.commentsText));
+            debugger
+            var oModelComments = new sap.ui.model.json.JSONModel();
+            oModelComments.setData({ Comments: filteredComments });
+            debugger
+            oView.setModel(oModelComments, "commentModel");
+            console.log("Filtered Comments Data", filteredComments);
+            
+          } else {
+            console.warn("PurchaseOrderUuid not available in base URL data.");
+          }
+        } catch (error) {
+          console.error("Error during AJAX requests:", error);
+        }
+    
 
-
-
-  },
+    debugger;
+}.bind(this), 1000);
+},    
       
   onOpenPressed: function (oEvent) {
     // Base URL for the OData service

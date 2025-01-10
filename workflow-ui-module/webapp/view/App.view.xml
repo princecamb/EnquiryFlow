@@ -24,9 +24,9 @@
             <sections>
 
                 <!-- General Information Section -->
-                <ObjectPageSection id="generalInformationSection" title="General Information" titleUppercase="false">
+                <ObjectPageSection id="generalInformationSection" title="Customer Information" titleUppercase="false">
                     <subSections>
-                        <ObjectPageSubSection id="generalInformationSubSection" title="General Information" titleUppercase="false">
+                        <ObjectPageSubSection id="generalInformationSubSection" title="Customer Information" titleUppercase="false">
                             <form:SimpleForm id="general-information-form" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
                                 <form:content>
                                     <m:Label id="companyName-label" text="CompanyName" />
@@ -46,6 +46,9 @@
 
                                     <m:Label id="jobTitle-label" text="Job Title" />
                                     <m:Text id="jobTitle-text" text="{context>/jobTitle}" />
+
+                                    <m:Label id="comp-label" text="Customer ID" />
+                                    <m:Text id="comp-text" text="{context>/customerID}" />
 
 <m:Label id="Department-label" text="Department" />
 <m:Text id="Department-text" text="{context>/Department}" />
@@ -82,7 +85,7 @@
                 </ObjectPageSection>
 
                 <!-- Enquiry Details Section -->
-                <ObjectPageSection id="enquiryDetailsSection" title="Enquiry Details" titleUppercase="false">
+                <ObjectPageSection id="enquiryDetailsSection" title="Inquiry Details" titleUppercase="false">
                     <subSections>
                         <ObjectPageSubSection id="enquiryDetailsSubSection" titleUppercase="false">
                             <form:SimpleForm id="enquiry-information-form" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
@@ -98,8 +101,11 @@
                                     <m:Label id="Sales-label" text="Sales Organization" />
                                     <m:Text id="salesOrg-text" text="{context>/SalesOrg}" />
 
+                                     <m:Label id="vendor-label" text="Vendor Code" />
+                                    <m:Text id="vendor-text" text="{context>/vendorCode}" />
 
-                                    <m:Label id="purchaseEnquiryID-label" text="Purchase Enquiry ID" />
+
+                                    <m:Label id="purchaseEnquiryID-label" text="Purchase Inquiry ID" />
                                     <m:Text id="purchaseEnquiryID-text" text="{context>/purchaseEnquiryID}" />
 
                                      <m:Label id="Distribution-label" text="Distribution Channel" />
@@ -109,6 +115,39 @@
                                     <m:Text id="Document-text"  text="{context>/DocumentType}" />
                                 </form:content>
                             </form:SimpleForm>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+                <ObjectPageSection id="PartnerSection" title="Partners" titleUppercase="false">
+                    <subSections>
+                        <ObjectPageSubSection id="partnerDetailsSubSection" titleUppercase="false" class="customVehicleSubSection">
+                            <!-- Horizontal Scroll Container for Vehicle Details -->
+                          <m:ScrollContainer id="_IDGenScrollContainer11" height="100%" width="100%" horizontal="true" vertical="true" class="thin-scrollbar">
+                                <ui:Table id="partner-details-table" rows="{mydetail>/patner}" width="100%" selectionMode="None" visibleRowCount="{= Math.max(1, ${mydetail>/patner}.length)}">
+                                    <ui:columns>
+                                        <ui:Column id="_IDGenColumn0" width="450px">
+                                            <m:Label id="_IDGenLabel08" text="Partner Number" />
+                                            <ui:template>
+                                                <m:Text id="_IDGenText11" text="{mydetail>partnerNumber}" textAlign="Center" />
+                                            </ui:template>
+                                        </ui:Column>
+                                          </ui:columns>
+                                            <ui:columns>
+                                        <ui:Column id="_IDGenColumn07" width="450px">
+                                            <m:Label id="_IDGenLabel67" text="Partner Role" />
+                                            <ui:template>
+                                                <m:Text id="_IDGenText14" text="{mydetail>partnerRole}" textAlign="Center" />
+                                            </ui:template>
+                                        </ui:Column>
+                                         <ui:Column id="_IDGenColumn08" width="450px">
+                                            <m:Label id="_IDGenLabel68" text="Partner Name" />
+                                            <ui:template>
+                                                <m:Text id="_IDGenText148" text="{mydetail>partnerName}" textAlign="Center" />
+                                            </ui:template>
+                                        </ui:Column>
+                                          </ui:columns>
+                                </ui:Table>
+                            </m:ScrollContainer>
                         </ObjectPageSubSection>
                     </subSections>
                 </ObjectPageSection>
@@ -139,36 +178,24 @@
                                                 <m:Text id="_IDGenText4" text="{myVehicle>vehicleColor}" textAlign="Center" />
                                             </ui:template>
                                         </ui:Column>
-                                        <ui:Column id="_IDGenColumn2" width="150px">
+                                        <ui:Column id="_IDGenColumn2" width="200px">
                                             <m:Label id="_IDGenLabel2" text="Quantity" />
                                             <ui:template>
                                                 <m:Text id="_IDGenText3" text="{myVehicle>quantity}" textAlign="Center" />
                                             </ui:template>
-                                        </ui:Column>  
-                                         <ui:Column id="_IDGenColumn6" width="200px">
-                                            <m:Label id="_IDGenLabel13" text="Partner Role" />
-                                            <ui:template>
-                                                <m:Text id="_IDGenText14" text="{myVehicle>partnerRole}" textAlign="Center" />
-                                            </ui:template>
-                                        </ui:Column>
-                                         <ui:Column id="_IDGenColumn8" width="200px">
-                                            <m:Label id="_IDGenLabel23" text="Partner No" />
-                                            <ui:template>
-                                                <m:Text id="_IDGenText24" text="{myVehicle>partnerNumber}" textAlign="Center" />
-                                            </ui:template>
-                                        </ui:Column>  
-                                         <ui:Column id="_IDGenColumn9" width="200px">
+                                        </ui:Column>   
+                                         <ui:Column id="_IDGenColumn9" width="300px">
                                             <m:Label id="_IDGenLabel231" text="Preferred Delivery Date" />
                                             <ui:template>
                                                 <m:Text id="_IDGenText241" text="{myVehicle>preferredDelDate}" textAlign="Center" />
                                             </ui:template>
                                         </ui:Column>  
-                                         <ui:Column id="_IDGenColumn10" width="200px">
+                                         <ui:Column id="_IDGenColumn10" width="300px">
                                             <m:Label id="_IDGenLabel232" text="Preferred Delivery Location" />
                                             <ui:template>
                                                 <m:Text id="_IDGenText245" text="{myVehicle>preferredDelLocation}" textAlign="Center" />
                                             </ui:template>
-                                        </ui:Column>                          
+                                        </ui:Column>                            
                                     </ui:columns>
                                 </ui:Table>
                             </m:ScrollContainer>
@@ -178,9 +205,9 @@
 
 
                 <!-- Attachment Section -->
-                <ObjectPageSection id="attachmentsSection1" title="Attachments" titleUppercase="false">
+                <ObjectPageSection id="attachmentsSection1" title="Documents" titleUppercase="false">
                     <subSections>
-                        <ObjectPageSubSection id="attachmentsSubSection1" title="Attachments" titleUppercase="false">
+                        <ObjectPageSubSection id="attachmentsSubSection1" title="Documents" titleUppercase="false">
                             <upload:UploadSet id="uploadSet1" uploadEnabled="false" items="{myModel>/Files}">
                                 <upload:items>
                                     <upload:UploadSetItem id="uploadSetItem1" fileName="{myModel>fileName}" mediaType="{myModel>mediaType}" url="{myModel>url}" enabledEdit="false" enabledRemove="false" visibleEdit="false" visibleRemove="false" openPressed="onOpenPressed">
@@ -198,7 +225,7 @@
 
                 <!-- comment section -->
 
-                <ObjectPageSection id="commentSection"  titleUppercase="false">
+         <!-- <ObjectPageSection id="commentSection"  titleUppercase="false">
     <subSections>
         <ObjectPageSubSection id="_IDGenObjectPageSubSection5" title="Comments" titleUppercase="false">
             <m:VBox id="_IDGenVBox2" width="100%">
@@ -210,8 +237,42 @@
             </m:VBox>
         </ObjectPageSubSection>
     </subSections>
-</ObjectPageSection>
+</ObjectPageSection> -->
 
+<ObjectPageSection id="commentSection" titleUppercase="false">
+    <subSections>
+        <ObjectPageSubSection id="_IDGenObjectPageSubSection5" title="Comments" titleUppercase="false">
+            <m:VBox id="_IDGenVBox2" width="100%">
+             <m:List id="_IDGenCommentList" items="{commentModel>/Comments}">
+                    <m:CustomListItem id="_IDGenCustomListItem1">
+                        <m:VBox id="_IDGenVBox" class="commentItem" width="100%">
+                            <!-- User -->
+                            <m:Text
+                                id="_IDGenTextUser"
+                                text="{commentModel>commentsText}"
+                                class="userClass"
+                            />
+                            <!-- Comments Text -->
+                            <m:Text
+                                id="_IDGenTextComment"
+                                text="{commentModel>createdAt}"
+                                class="commentsTextClass"
+                            />
+                            <!-- Created At -->
+                            <m:Text
+                                id="_IDGenTextCreatedAt"
+                                text="{commentModel>createdBy}"
+                                class="createdAtClass"
+                            />
+                        </m:VBox>
+                    </m:CustomListItem>
+                </m:List>
+            
+               
+            </m:VBox>
+        </ObjectPageSubSection>
+    </subSections>
+</ObjectPageSection>
             </sections>
         </ObjectPageLayout>
     </m:App>

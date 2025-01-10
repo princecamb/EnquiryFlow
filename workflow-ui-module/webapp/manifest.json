@@ -162,7 +162,8 @@
               "Street",
               "postalCode",
               "location",
-              "link"
+              "link",
+              "vendorCode"
             ],
             "properties": {
               
@@ -170,6 +171,17 @@
                 "type": "string",
                 "title": "Purchase Enquiry ID",
                 "description": "ID of the Purchase Enquiry"
+              },
+              "vendorCode": {
+                "type": "string",
+                "title": "Vendor Code",
+                "description": "Vender Id"
+              },
+
+              "companyCode": {
+                "type": "string",
+                "title": "Company Code",
+                "description": "Vender Id"
               },
              
               "contactPerson": {
@@ -239,7 +251,6 @@
                 "title": "file link",
                 "description": "ID of the Purchase Enquiry"
               },
-
               "jobTitle": {
                 "type": "string",
                 "title": "Job Title",
@@ -296,6 +307,11 @@
                 "type": "string",
                 "title": "link",
                 "description": "Location details"
+              },
+              "patner": {
+                "type": "array",
+                "title": "patner",
+                "description": "Partner details"
               }
 
             }

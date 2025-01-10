@@ -45,18 +45,42 @@
    
 }
 .styledText .sapMInputBaseInner {
-    font-family: "Georgia, serif"; /* Elegant font for the text */
-    font-size: 18px; /* Slightly larger font size */
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px; /* Slightly larger font size */
     color: #020912; /* Soft blue text color */
     font-style: italic; /* Makes the text italic */
     font-weight: bold; /* Makes the text bold */
     text-align: justify; /* Justifies the text */
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3); /* Enhanced shadow for a 3D effect */
+    text-shadow: 8px 8px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow for a 3D effect */
     letter-spacing: 0.5px; /* Slightly spaced out letters for readability */
-    line-height: 1.8; /* Increased line height for a cleaner look */
+    line-height: 5.0; /* Increased line height for a cleaner look */
     border-radius: 8px; /* Smooth corners for input area */
     padding: 10px; /* Adds padding inside the text area */
     background: linear-gradient(135deg, #f5f7fa, #dce1e8); /* Soft gradient background */
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2), -3px -3px 6px rgba(255, 255, 255, 0.5); /* 3D shadow effect */
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2), -3px -3px 6px rgba(255, 255, 255, 0.5); /* 3D shadow effect */
+}
+.sapUiFupGroup button {
+    display: none !important;
 }
 
+.userClass {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color: #121212; /* Example: Blue color for user names */
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px; 
+}
+
+.commentsTextClass {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    color: #333; /* Example: Dark text for comments */
+    margin : 10px 0; /* Add spacing between comments and other fields */
+}
+
+.createdAtClass {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    color: #999; /* Example: Grey color for timestamps */
+    text-align: right; /* Align timestamps to the right */
+}
